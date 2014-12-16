@@ -66,28 +66,47 @@ module.exports = function(grunt) {
                     'source_files/*.scss',
                     'source_files/*.css'
                 ],
-                tasks: ['sass', 'git']
+                tasks: ['sass']
             },
+
             scripts: {
                 files: [
                     'source_files/*.js'
                 ],
                 tasks: ['uglify']
-            }
+            },
+
+            gitadd: {
+                files: [
+                    'source_files/*.css',
+                    'source_files/*.js'
+                ],
+                tasks: ['gitadd']
+            },
+
+            gitcommit: {
+                files: [
+                    'source_files/*.css',
+                    'source_files/*.js'
+                ],
+                tasks: ['gitcommit']
+            },
+
+            gitpush: {
+                files: [
+                    'source_files/*.css',
+                    'source_files/*.js'
+                ],
+                tasks: ['gitpush']
+            },
         }
     });
-
-    // Create task
-    grunt.registerTask('git', [
-        'gitadd',
-        'gitcommit',
-        'gitpush'
-    ]);
 
     // load all grunt tasks
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-git');
 
     grunt.registerTask('default', ['watch']);
 
